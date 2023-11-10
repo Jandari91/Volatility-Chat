@@ -1,0 +1,126 @@
+﻿<UserControl x:Class="RealTimeChat.Chat.ChatView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:RealTimeChat"
+             xmlns:tools="clr-namespace:RealTimeChat.Chat"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="800">
+    <UserControl.Resources>
+        <DataTemplate DataType="{x:Type tools:MessageEnteredViewModel}">
+            <tools:MessageEnteredView DataContext="{Binding}" HorizontalAlignment="Center" />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type tools:MessageReceivedViewModel}">
+            <tools:MessageReceivedView DataContext="{Binding}" HorizontalAlignment="Left"/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type tools:MessageSentViewModel}">
+            <tools:MessageSentView DataContext="{Binding}" HorizontalAlignment="Right"/>
+        </DataTemplate>
+    </UserControl.Resources>
+    
+    
+    <Grid Background="#FFE4E4E4">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <StackPanel Grid.Column="0" Background="{StaticResource PrimaryHueDarkBrush}">
+                    <!--<TextBox Margin="20 10" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="SEARCH" Foreground="White"/>-->
+                    <Grid Height="40">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Button Style="{StaticResource MaterialDesignFlatButton}" Grid.Column="0" Padding="0">
+                            <materialDesign:PackIcon Kind="People" Foreground="White" Height="25" Width="25"/>
+                        </Button>
+                    </Grid>
+                    <ListView ItemsSource="{Binding UsersInRoom}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid HorizontalAlignment="Center" Margin="5 0 0 0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="10"/>
+                                        <ColumnDefinition Width="120"/>
+                                        <ColumnDefinition Width="50*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Border Width="10" Height="10" VerticalAlignment="Center" Margin="0" HorizontalAlignment="Center" CornerRadius="15" Background="LightGreen"/>
+
+                                    <StackPanel Grid.Column="1">
+                                        <TextBlock Text="{Binding }" Margin="10 0 0 0"/>
+                                    </StackPanel>
+                                </Grid>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+
+                    </ListView>
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0" Height="40" VerticalAlignment="Top" Background="#FFE4E4E4">
+                    <Grid.Effect>
+                        <DropShadowEffect BlurRadius="20" ShadowDepth="1"/>
+                    </Grid.Effect>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0"  Orientation="Horizontal">
+                        <Border Width="10" Height="10" HorizontalAlignment="Right" Margin="15" Background="Green" CornerRadius="15" VerticalAlignment="Center"/>
+                        <TextBlock Text="{Binding RoomName}" FontSize="15" VerticalAlignment="Center"/>
+                    </StackPanel>
+                    <TextBlock HorizontalAlignment="Center" Grid.Column="1" Text="{Binding UserNickname}" FontSize="18" VerticalAlignment="Center"/>
+                    <TextBlock HorizontalAlignment="Right" Grid.Column="2" Text="{Binding RoomPeople}" Margin="15 0" FontSize="15" VerticalAlignment="Center"/>
+                </Grid>
+
+                <tools:LoggingListBox Grid.Row="1" ItemsSource="{Binding Messages}" SelectedItem="{Binding SelectedMessage}"
+                                      HorizontalContentAlignment="Stretch"
+                                      ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                      ScrollViewer.CanContentScroll="False"/>
+
+                <Border Grid.Row="2" Background="#FFAFE6B2" VerticalAlignment="Bottom">
+                    <Grid Margin="0 10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="55"/>
+                            <ColumnDefinition Width="55"/>
+                            <ColumnDefinition Width="55"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBox Grid.Column="0" MaxHeight="80" TextWrapping="Wrap" Margin="15 0" VerticalScrollBarVisibility="Auto"
+                         Text="{Binding InputMessage, UpdateSourceTrigger=PropertyChanged}">
+                            <TextBox.InputBindings>
+                                <KeyBinding Key="Enter" Command="{Binding MessageSendCommand}"/>
+                            </TextBox.InputBindings>
+                        </TextBox>
+                        <Button Grid.Column="3" VerticalAlignment="Bottom" Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
+                        Command="{Binding MessageSendCommand}">
+                            <materialDesign:PackIcon Kind="Send"/>
+                        </Button>
+                        <Button Grid.Column="2" Background="{x:Null}" VerticalAlignment="Bottom" Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
+                                Command="{Binding ImageSendCommand}">
+                            <materialDesign:PackIcon Kind="Image" Foreground="{StaticResource PrimaryHueDarkBrush}"/>
+                        </Button>
+                        <Button Background="{x:Null}" Grid.Column="1" VerticalAlignment="Bottom" Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
+                                Command="{Binding FileSendCommand}">
+                            <materialDesign:PackIcon Kind="ZipBox" Foreground="{StaticResource PrimaryHueDarkBrush}"/>
+                        </Button>
+                    </Grid>
+                </Border>
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>

@@ -1,0 +1,27 @@
+﻿<UserControl x:Class="RealTimeChat.LoginNickName.LoginNickNameView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:RealTimeChat"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="400">
+    <Grid>
+        <StackPanel Margin="50">
+            <Border Background="White" Margin="10 20" CornerRadius="5">
+                <StackPanel Margin="25">
+                    <!--<ComboBox Margin="15" Style="{StaticResource MaterialDesignFloatingHintComboBox}" materialDesign:HintAssist.Hint="직급" Text="{Binding Region}">
+                        <ComboBoxItem Content="01"/>
+                        <ComboBoxItem Content="02"/>
+                    </ComboBox>-->
+                    <TextBox Text="{Binding Nickname}" Margin="15" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="닉네임"/>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Button Margin="15 50" Content="입장" Foreground="White"
+                                Command="{Binding ChatEnterCommand}"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+        </StackPanel>
+    </Grid>
+</UserControl>

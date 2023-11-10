@@ -1,0 +1,37 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+
+namespace RealTimeChat.Chat
+{
+    /// <summary>
+    /// ChatView.xaml에 대한 상호 작용 논리
+    /// </summary>
+    public partial class ChatView : UserControl
+    {
+        public ChatView()
+        {
+            InitializeComponent();
+
+            //ChatViewModel.ScrollIntoView += ChatViewModel_ScrollIntoView;
+        }
+
+        //private void ChatViewModel_ScrollIntoView(object sender, object e)
+        //{
+        //    if (ChatListView.Items.Count <= 0) return;
+        //    ChatListView.SelectedIndex = ChatListView.Items.Count - 1;
+        //    ChatListView.ScrollIntoView(ChatListView.SelectedItem);
+        //}
+    }
+}

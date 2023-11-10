@@ -1,0 +1,27 @@
+﻿<UserControl x:Class="RealTimeChat.ChatRoomList.ChatRoomControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:RealTimeChat.ChatRoomList"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d">
+    <Grid HorizontalAlignment="Center" Margin="5">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="50*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0" Grid.Row="0">
+            <TextBlock Text="{Binding ChatRoomName}" Margin="10 0"/>
+            <TextBlock Text="방 설명" Margin="10 0" TextTrimming="CharacterEllipsis" Opacity="0.6" FontSize="11"/>
+        </StackPanel>
+        <Border Grid.Column="1" Grid.Row="0" Width="20" Height="20" CornerRadius="15" Background="White" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5">
+            <TextBlock FontSize="11" Text="2" Foreground="{StaticResource PrimaryHueDarkBrush}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        </Border>
+        <Button Grid.Column="2" Grid.Row="0" Style="{StaticResource MaterialDesignFlatButton}"
+                            Command="{Binding EnterRoomCommand}">
+            <materialDesign:PackIcon Kind="ArrowRightBoldOutline" Foreground="White" Width="20" Height="20"/>
+        </Button>
+    </Grid>
+</UserControl>

@@ -1,0 +1,7 @@
+﻿rabbitmq.connection
+{
+	hostname = "localhost"
+	vhost = "/"
+	username = "mirero"
+	password = "system"
+}

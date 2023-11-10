@@ -1,0 +1,226 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{EEFD89A9-329B-4CBC-A51E-5CC7A4570339}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>RealTimeChat</RootNamespace>
+    <AssemblyName>RealTimeChat</AssemblyName>
+    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Page Include="ChatRoomList\_control\ChatRoomControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Chat\_imageDialog\ImageViewDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Chat\_control\MessageEnteredView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Chat\_control\MessageSentView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Chat\_control\MessageReceivedView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Chat\ChatView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ChatRoomList\ChatRoomListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LoginNickName\LoginNickNameView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Chat\_imageDialog\ImageViewDialog.xaml.cs">
+      <DependentUpon>ImageViewDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Chat\_imageDialog\ImageViewDialogViewModel.cs" />
+    <Compile Include="ChatRoomList\_control\ChatRoomControl.xaml.cs">
+      <DependentUpon>ChatRoomControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ChatRoomList\_data\ChatRoomInfo.cs" />
+    <Compile Include="Chat\_control\IMessage.cs" />
+    <Compile Include="Chat\_control\MessageEnteredView.xaml.cs">
+      <DependentUpon>MessageEnteredView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Chat\_actors\ChatViewModelActor.cs" />
+    <Compile Include="Chat\_actors\ConsumerActor.cs" />
+    <Compile Include="Chat\_actors\ProducerActor.cs" />
+    <Compile Include="Chat\_control\LoggingListBox.cs" />
+    <Compile Include="Chat\_control\MessageEnteredViewModel.cs" />
+    <Compile Include="Chat\_control\MessageReceivedViewModel.cs" />
+    <Compile Include="Chat\_control\MessageSentViewModel.cs" />
+    <Compile Include="Chat\_data\UserInRoom.cs" />
+    <Compile Include="Common\Control\RangeObservableCollection.cs" />
+    <Compile Include="Common\_helper\HoconHelper.cs" />
+    <Compile Include="Common\_rabbitMQ\ExchangeList.cs" />
+    <Compile Include="Common\_rabbitMQ\PublishProducer.cs" />
+    <Compile Include="Common\_rabbitMQ\QueueDeclareConsumer.cs" />
+    <Compile Include="Common\_rabbitMQ\QueueDeclareProducer.cs" />
+    <Compile Include="Common\_rabbitMQ\RabbitRestApi.cs" />
+    <Compile Include="Common\_rabbitMQ\SubscribeConsumer.cs" />
+    <Compile Include="Chat\ChatViewModel.cs" />
+    <Compile Include="LoginNickName\LoginNickNameViewModel.cs" />
+    <Compile Include="MainViewModel.cs" />
+    <Compile Include="ChatRoomList\ChatRoomListViewModel.cs" />
+    <Compile Include="Chat\_control\MessageSentView.xaml.cs">
+      <DependentUpon>MessageSentView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Chat\_control\MessageReceivedView.xaml.cs">
+      <DependentUpon>MessageReceivedView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Chat\ChatView.xaml.cs">
+      <DependentUpon>ChatView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ChatRoomList\ChatRoomListView.xaml.cs">
+      <DependentUpon>ChatRoomListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LoginNickName\LoginNickNameView.xaml.cs">
+      <DependentUpon>LoginNickNameView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MainView.xaml.cs">
+      <DependentUpon>MainView.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="RealTimeChat.hocon">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Akka">
+      <Version>1.3.13</Version>
+    </PackageReference>
+    <PackageReference Include="MaterialDesignColors">
+      <Version>2.1.4</Version>
+    </PackageReference>
+    <PackageReference Include="MaterialDesignThemes">
+      <Version>4.9.0</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf">
+      <Version>1.1.77</Version>
+    </PackageReference>
+    <PackageReference Include="MvvmDialogs">
+      <Version>5.3.0</Version>
+    </PackageReference>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>12.0.2</Version>
+    </PackageReference>
+    <PackageReference Include="RabbitMQ.Client">
+      <Version>5.1.0</Version>
+    </PackageReference>
+    <PackageReference Include="RestSharp">
+      <Version>106.6.9</Version>
+    </PackageReference>
+    <PackageReference Include="squirrel.windows">
+      <Version>1.9.1</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Messages\Messages.csproj">
+      <Project>{5717289a-7ac7-4e98-af74-60991147ddf7}</Project>
+      <Name>Messages</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MvvmApi\MvvmApi.csproj">
+      <Project>{F5F90A53-0AFC-4B54-A680-A8C250D32712}</Project>
+      <Name>MvvmApi</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RabbitMQApi\RabbitMQApi.csproj">
+      <Project>{2e35cdf4-4736-46c3-8496-f7755f861e5a}</Project>
+      <Name>RabbitMQApi</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Common\_data\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
