@@ -18,8 +18,13 @@ RabbitMQ API 스터디를 위해 개인 프로젝트를 만들었습니다.
 * Akka.NET
 * Squirrel
 
-## 특징
+## 실행 방법
 
+* docker를 사용해서 Rabbitmq를 올릴 수 있습니다.
+
+```
+> docker-compose up
+```
 
 
 ## UI
